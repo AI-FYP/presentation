@@ -123,3 +123,111 @@ Enlisting all tools, technologies, languages etc in use:
     - Using APIs for posting images is in future work. However Sending `emails` is included as a part of this project
     - We may include some other APIs for generating posts for Jobs, but that is also in future work.
     - Creating a chatbot within admin panel for automation of admin operations is another future work.
+
+## First Draft
+
+#### **1. Hardware and Embedded Programming**
+- **Hardware Components:**
+  - Raspberry Pi (main controller)
+  - PiCamera (camera)
+  - Microphone (audio input)
+  - Servo Motors (motion control)
+  - LEDs (status indicators)
+  - Pi Display (output expressions and statuses)
+  
+- **Embedded Programming Tools:**
+  - **Language:** Python
+  - **Libraries:**
+    - `RPi.GPIO` (control GPIO pins for motors and LEDs)
+    - `PiCamera` (camera operations)
+    - `speech_recognition` (speech input with `Vosk` for offline mode)
+    - `eSpeak` (text-to-speech in offline mode)
+
+---
+
+#### **2. Firmware on Raspberry Pi**
+- **Operating Mode:** Offline (No Internet) and Online (Connected to Server)
+- **Local Database:**
+  - `MySQL` (knowledge base for answers and actions)
+- **AI Capabilities:**
+  - Small-scale LLMs (`GPT2`, `DistilGPT2`, `TinyGPT`, or `DistilBERT`) for contextual understanding in offline mode.
+  - `AIML` (Artificial Intelligence Markup Language) for rule-based responses.
+- **Control Systems:**
+  - Pre-programmed action sequences stored in the database.
+  - Controllers for motors, expressions, and status indicators.
+- **Communication Protocols:**
+  - HTTP requests and WebSocket communication for connecting to servers.
+
+---
+
+#### **3. Server Infrastructure**
+- **Deployment Options:**
+  - Local server on a high-power computer (on the same network).
+  - Cloud server for remote operations (hosted platform).
+  
+- **Server Components:**
+  - **Language:** Python for backend AI logic.
+  - **Frameworks:** 
+    - `Laravel` (PHP) for web server and APIs.
+    - Alternatives: `ExpressJS` + `Node.js`, or `Django`.
+  - **Databases:**
+    - `MySQL` (records of devices, users, and tasks).
+    - `Neo4J` (graph-based knowledge base for devices).
+  - **Communication:**
+    - `sockets` and `HTTPBasicAuth` for device-server communication.
+    - GraphQL or JSON-based APIs for requests and responses.
+  
+- **Core Components:**
+  - **Workers:** Python-based system processes for handling tasks like user queries, video analysis, etc.
+  - **Scripts Directory:** Bash scripts for auxiliary server tasks.
+  - **Cron Jobs and Event Listeners:** Handle tasks like email notifications and result processing.
+
+---
+
+#### **4. AI Model Integration**
+- **Local LLM Implementation:**
+  - Model selection: Small-scale LLMs (`GPT2`, `DistilGPT2`, etc.).
+  - Processing Pipeline:
+    - Input: Sensor data and user query transformed into JSON.
+    - Output: User response and robot actions in JSON format.
+  - Prompt Engineering for role-based contextual understanding (admin/user).
+
+- **Object Detection:**
+  - **Face Recognition:** Detect user identity.
+  - **YOLO:** Object detection in video feed.
+  
+- **Post-Processing:**
+  - Controllers for converting AI responses into actionable outputs:
+    - MotorController
+    - ExpressionsController
+    - StatusController
+
+---
+
+#### **5. Admin Panel for HR Management**
+- **Frontend:**
+  - **Library:** ReactJS (component-based frontend).
+  - **UI Framework:** Material UI.
+  - **Charting:** ChartJS (visual reports).
+  - **Notifications:** SweetAlerts.
+  - **Templates:** HTML + CSS for job posts.
+  
+- **Backend:**
+  - Laravel's standard for Jobs and Queues.
+  - **SMTP:** For email notifications.
+  - **Reports Generation:** Automatically created at every HR operation stage.
+  
+- **Features:**
+  - Dashboard for HR operations.
+  - Control parameters for candidate selection and ATS testing.
+  - Report generation and access.
+  - Future Work:
+    - APIs for job posting automation.
+    - Admin Chatbot for automated operations.
+
+---
+
+#### **6. Future Work**
+- API integration for job post sharing.
+- Automation in admin panel operations (e.g., admin chatbot).
+- Enhanced AI models for more complex interactions. 
